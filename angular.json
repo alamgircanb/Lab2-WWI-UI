@@ -18,7 +18,7 @@
             "ssr": {
               "entry": "src/server.ts"
             },
-            "outputMode": "server",
+            "outputMode": "static",
             "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -30,7 +30,18 @@
             "styles": [
               "src/styles.css"
             ]
-          }
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -39,15 +50,15 @@
               "buildTarget": "lab2-wwi-ui:build:production"
             },
             "development": {
-              "buildTarget": "lab2-wwi-ui:build"
+              "buildTarget": "lab2-wwi-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "2add6261-0c7c-4ee2-9c27-6d2dd479d9e7"
   }
 }
